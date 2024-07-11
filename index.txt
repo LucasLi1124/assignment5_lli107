@@ -1,0 +1,211 @@
+
+=== sample.pdf ===
+
+--- Page 1 ---
+© T.A. BINKOWSKI, 2020CONCEPTS OF PROGRAMMING
+MODULE 5 MPCS 50101
+© T.A. BINKOWSKI, 2016
+--- Page 2 ---
+© T.A. BINKOWSKI, 2020REGULAR EXPRESSION
+MODULE 5 MPCS 50101
+--- Page 3 ---
+REGULAR EXPRESSION•Regular expression -“regex” or “regexp” -Concise and flexible means for matching strings of text, such as particular characters, words, or patterns of characters -Sometimes “too concise” and “too flexible”
+--- Page 4 ---
+REGULAR EXPRESSION•Many will use regex •Few will master (or need to)
+--- Page 5 ---
+REGULAR EXPRESSION•A regular expression is written in a formal language that can be interpreted by a regular expression processor -Other languages support regular expression -Implementation details may differ slightly
+--- Page 6 ---
+REGULAR EXPRESSION
+•Match the string "abc"abc
+--- Page 7 ---
+REGULAR EXPRESSION
+•Match the number "1"1
+--- Page 8 ---
+REGULAR EXPRESSION
+•Match the number "123"123
+--- Page 9 ---
+REGULAR EXPRESSION•Match a single number "\d" -Matches first instance\d
+--- Page 10 ---
+REGULAR EXPRESSION
+•Match 3 numbers "\d{3}"\d{3}
+--- Page 11 ---
+REGULAR EXPRESSION•Match more than 1 members of the following set "[19876542]+"[19876542]+
+--- Page 12 ---
+REGULAR EXPRESSION^        Matches the beginning of a line $        Matches the end of the line .        Matches any character \s       Matches whitespace \S       Matches any non-whitespace character *        Repeats a character zero or more times *?       Repeats a character zero or more times (non-greedy) +        Repeats a character one or more times +?       Repeats a character one or more times (non-greedy) [aeiou]  Matches a single character in the listed set [^XYZ]   Matches a single character not in the listed set [a-z0-9] The set of characters can include a range (        Indicates where string extraction is to start )        Indicates where string extraction is to end
+--- Page 13 ---
+REGULAR EXPRESSION^(?:(?:(?:0?[13578]|1[02])(\/|-|\.)31)\1|(?:(?:0?[13-9]|1[0-2])(\/|-|\.)(?:29|30)\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:0?2(\/|-|\.)29\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:(?:0?[1-9])|(?:1[0-2]))(\/|-|\.)(?:0?[1-9]|1\d|2[0-8])\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$PARSE CALENDAR DATA
+--- Page 14 ---
+REGULAR EXPRESSION(?:(?:\r\n)?[ \t])*(?:(?:(?:[^()<>@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t] )+|\Z|(?=[\["()<>@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?: \r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()<>@,;:\\".\[\] \000-\031]+(?:(?:( ?:\r\n)?[ \t])+|\Z|(?=[\["()<>@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[  \t]))*"(?:(?:\r\n)?[ \t])*))*@(?:(?:\r\n)?[ \t])*(?:[^()<>@,;:\\".\[\] \000-\0 31]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()<>@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\ ](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()<>@,;:\\".\[\] \000-\031]+ (?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()<>@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?: (?:\r\n)?[ \t])*))*|(?:[^()<>@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z |(?=[\["()<>@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r\n) ?[ \t])*)*\<(?:(?:\r\n)?[ \t])*(?:@(?:[^()<>@,;:\\".\[\] \000-\031]+(?:(?:(?:\ r\n)?[ \t])+|\Z|(?=[\["()<>@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[  \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()<>@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n) ?[ \t])+|\Z|(?=[\["()<>@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t] )*))*(?:,@(?:(?:\r\n)?[ \t])*(?:[^()<>@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[  \t])+|\Z|(?=[\["()<>@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])* )(?:\.(?:(?:\r\n)?[ \t])*(?:[^()<>@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t] RFC822 EMAIL ADDRESS
+--- Page 15 ---
+REGULAR EXPRESSION•Before you can use regular expressions in your program, you must import the library using import re
+--- Page 16 ---
+REGULAR EXPRESSIONimport resaying = "One fish, two fish, red fish blue fish.  This one has a little star, this one has a little car.  Say, what alot of fish there are."if re.search('fish', saying):    print("Found the fish")# Return an arrayprint((re.findall('fish',saying)))
+--- Page 17 ---
+REGULAR EXPRESSION•You can use re.search() to see if a string matches a regular expression -Similar to find() in stringsif re.search('fish', saying):    print("Found the fish")match = re.search("abc","abcdefghi")print(match)>> <re.Match object; span=(0, 3), match='abc'>
+--- Page 18 ---
+REGULAR EXPRESSION•re.findall() to extract portions of a string that match your regular expressionimport resaying = "One fish, two fish, red fish blue fish.  This one has a little star, this one has a little car.  Say, what alot of fish there are."if saying.find('wish'):    print "Found it"if re.search('fish', saying):    print "Found the fish"# Return all matchesprint re.findall('fish',saying)# >> ['fish', 'fish', 'fish', 'fish', 'fish']
+--- Page 19 ---
+REGULAR EXPRESSIONimport resaying = "One fish, two fish, red fish blue fish.  This one has a little star, this one has a little car.  Say, what alot of fish there are."# Multiple matchmatch = re.findall('fish',saying)if match:    print(("Found:", match))else:    print("Didn't find it")
+--- Page 20 ---
+REGULAR EXPRESSIONimport re#In raw string literals, backslashes have no special meaning as an escape character. This is useful for writing strings that contain a lot of backslashes. Not having to escape each backslash makes the string more readable.str = r'\User\timothy\files'match = re.search(r'\\timothy', str)# If-statement after search() tests if it succeeded# results are in the .group()if match:    print('found', match.group())else:    print('did not find')
+
+--- Page 21 ---
+REGULAR EXPRESSION## Search for pattern 'iii' in string 'piiig'. ## All of the pattern must match, but it may appear  ## anywhere. ## On success, match.group() is matched text. match = re.search(r'iii', 'piiig')  #  found, match.group() == "iii" match = re.search(r'igs', 'piiig')  #  not found, match == None 
+--- Page 22 ---
+REGULAR EXPRESSION## . = any char but \n match = re.search(r'..g', 'piiig')  # =>  found, match.group() == “iig" 
+--- Page 23 ---
+REGULAR EXPRESSION## Matching digits or characters ## \d = digit char,  ## \w = word char match = re.search(r'\d\d\d', 'p123g') =>  found, match.group() == "123" match = re.search(r'\w\w\w', '@@abcd!!') =>  found, match.group() == "abc"
+--- Page 24 ---
+REGULAR EXPRESSIONmatch = re.search(r'\d\d\d', 'p123g') print match.group() # "123" # Greedy match match = re.search(r'\d+', 'p123g') print match.group() # "123" match = re.search(r'\d{5}', 'p123456789g') print match.group() # "12345" match = re.search(r'\w\w\w', '@@abcd!!') print match.group() # 'abc' match = re.search(r'\w{4}', '@@abcd!!') print match.group() # 'abcd' match = re.search(r'(\d\w){3}', '1a2a3a4a5a') print match.group() # 1a2a3a
+--- Page 25 ---
+REGULAR EXPRESSIONimport reregex = r"([a-zA-Z]+) (\d+)"match = re.search(regex, "June 24")print(("Match at index %s, %s" % (match.start(), match.end())))# So this will print("June 24"print(("Full match: %s" % (match.group(0))))# So this will print("June"print(("Month: %s" % (match.group(1))))# So this will print("24"print(("Day: %s" % (match.group(2))))GROUP CAN CONTAIN MORE THAN A SINGLE RESULT GROUPS ()
+GROUP 1 MATCHGROUP 2 MATCH
+--- Page 26 ---
+REGULAR EXPRESSION
+HTTPS://REGEXONE.COM/LESSON/INTRODUCTION_ABCS
+--- Page 27 ---
+© T.A. BINKOWSKI, 2020UNIT TESTING
+MODULE 5 MPCS 50101
+--- Page 28 ---
+UNIT TESTING•Method by which individual units of source code, sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures, are tested to determine if they are fit for use
+--- Page 29 ---
+UNIT TESTING
+•Code that runs to check the validity of other code
+--- Page 30 ---
+UNIT TESTING•Unit testing is a method to help you write more robust code -Proves that code works the way you think it should -Protect against future changes -Makes you think about what can go wrong -Simplify the write, try, edit, fix, write, try, edit, fix, cycle -Documents how the code is usedREQUIRES SOME UPFRONT WORK, BUT PAYS OFF IN THE END
+--- Page 31 ---
+UNIT TESTING•Proves that code works the way you think it shoulddef sum(x,y):    total = x + y    return totalsum(1,3) == 4 
+!sum(1,2) != 4 
+"
+--- Page 32 ---
+UNIT TESTING•Makes you think about what can go wrongdef sum(x,y):    total = x + y    return totalsum("hello","world") == "hello world"
+!sum("hello", 3) 
+"
+--- Page 33 ---
+UNIT TESTING•Simplify the write, try, edit, fix, write, try, edit, fix, cycle •Documents how the code is useddef sum(x,y):    total = x + y    return totalsum(1,3) == 4 
+!sum(10,10) == 20 
+!sum("hello","world") == "hello world"
+!
+--- Page 34 ---
+UNIT TESTING•Protect against future changesdef sum(x,y):      x = int(x)    y = int(y)    total = x + y    return totalsum(1,3) == 4 
+!sum(10,10) == 20 
+!sum("hello","world") == "hello world"
+"
+--- Page 35 ---
+UNIT TESTING•Python testing frameworks automate testing code •Separate programs and tools that run alongside your code
+--- Page 36 ---
+UNIT TESTING•Most popular -Unittest -Nose -pytest PART OF PYTHON USED TO TEST  THE LANGUAGE
+--- Page 37 ---
+PYTEST
+--- Page 38 ---
+PYTEST•Easy to use •Scalable  •Detailed info on failing assert statements  •Auto-discovery of test modules and functions •Support Python 2 and 3 •Rich plugin architecture
+
+--- Page 39 ---
+PYTEST1 == 1True
+--- Page 40 ---
+PYTEST10 != 2True
+--- Page 41 ---
+PYTEST10 > 100False
+--- Page 42 ---
+PYTEST10 >= 10True
+--- Page 43 ---
+PYTEST"cat" in "catalog"True
+--- Page 44 ---
+PYTEST1 == 110 != 210 > 10010 >= 10"cat" in "catalog"TrueTrueFalseTrueTrue
+--- Page 45 ---
+PYTESTassert 1 == 1assert 10 != 2assert 10 > 100assert 10 >= 10assert "cat" in "catalog"TrueTrueFalseTrueTrue
+--- Page 46 ---
+PYTEST# Should be installed as part of anaconda, but just in # casepip install pytest
+--- Page 47 ---
+PYTEST
+543 % pytest================================================= test session starts =================================================platform darwin -- Python 3.7.5, pytest-5.3.2, py-1.8.1, pluggy-0.13.1rootdir: /Users/tabinkowski/Google Drive/g-Teaching/uchicago.codes/uchicago.codes-courses/mpcs50101/mpcs50101-2020-winter/mpcs501010-2020-winter-coursework/assignment-3plugins: astropy-header-0.1.1, arraydiff-0.3, remotedata-0.3.2, openfiles-0.4.0, doctestplus-0.5.0, hypothesis-4.54.2collected 0 items  
+--- Page 48 ---
+PYTESTdef add(x,y):    total = x + y    return totalimport calculatordef test_add():    assert calculator.add(1,3) == 4calculator.pytest_calculator.py
+MAKE ASSERTIONS THAT  WE KNOW ARE TRUE
+--- Page 49 ---
+PYTESTPYTEST
+--- Page 50 ---
+PYTESTPYTEST -K TEST_NAME
+--- Page 51 ---
+PYTEST# pytest runs on files following naming conventionspytest test_*.pypytest tests/pytest -k test_name# many more options ...
+--- Page 52 ---
+TESTING IN VSCODE
+--- Page 53 ---
+TESTING IN VSCODE•Enable testing in VSCode •CMD-Shift-P > Run All Test
+--- Page 54 ---
+TESTING IN VSCODE•Enable testing framework
+--- Page 55 ---
+TESTING IN VSCODE
+--- Page 56 ---
+TESTING IN VSCODE
+RUN TESTS
+--- Page 57 ---
+TESTING IN VSCODE
+RUN TEST
+--- Page 58 ---
+TESTING IN VSCODETESTING PANE
+--- Page 59 ---
+CALCULATOR TEST
+--- Page 60 ---
+CALCULATOR  TEST•Calculator module -Add -Subtract -Divide -multiplydef add(x, y):    """Add two numbers"""    result = x + y    return resultdef subtract(x, y):    """Subtract a number from a number"""    result = x - y    return resultdef multiply(x, y):    """Multiply two numbers"""    result = x * y    return resultdef divide(x, y):    """Divide a number by a number"""    result = x / y    return result
+--- Page 61 ---
+CALCULATOR TESTimport calculatorimport pytestdef test_add():    assert calculator.add(1,3) == 4    assert calculator.add(10,10) == 20    assert calculator.add(10,100) != 20TEST THE NEGATIVE CASE
+--- Page 62 ---
+CALCULATOR TESTimport calculatorimport pytestdef test_add():    assert calculator.add(1,3) == 4    assert calculator.add(10,10) == 20    assert calculator.add(10,100) == 20FAIL
+
+--- Page 63 ---
+CALCULATOR TESTimport calculatorimport pytestdef test_multiply():    assert calculator.multiply(10,3) == 30    assert calculator.multiply(10,3) != 7    assert calculator.multiply(0,3) == 0
+--- Page 64 ---
+CALCULATOR TESTimport calculatorimport pytestdef test_divide():    assert calculator.divide(9,3) == 3    assert calculator.divide(9,0) == ???IF THIS HAPPENS WE GET AN  ERROR,  NOT AN INCORRECT  VALUE
+--- Page 65 ---
+CALCULATOR TESTimport calculatorimport pytestdef test_divide():    assert calculator.divide(9,3) == 3    with pytest.raises(ZeroDivisionError):        calculator.divide(10, 0)    USING PYTEST.RAISES  IN A WITH BLOCK AS A CONTEXT MANAGER,  WE CAN CHECK THAT  AN EXCEPTION IS "CORRECTLY" RAISED
+--- Page 66 ---
+CALCULATOR TESTimport calculatorimport pytestdef test_divide():    assert calculator.divide(9,3) == 3    with pytest.raises(ZeroDivisionError):        calculator.divide(10, 1)    THIS TEST WILL FAIL BECAUSE IT DID  NOT RAISE AN  EXCEPTION
+--- Page 67 ---
+CALCULATOR TESTimport calculatorimport pytestdef test_divide():    assert calculator.divide(9,3) == 3    with pytest.raises(ZeroDivisionError) as excinfo:        calculator.divide(10, 0)    assert str(execinfo.value) == 'some info'    SAVES THE EXCEPTION OBJECT SO YOU CAN EXTRACT DETAILS FROM IT
+--- Page 68 ---
+CALCULATOR TESTimport calculatorimport pytestdef test_multiply():    assert calculator.multiply(10,3) == 30    assert calculator.multiply(10,3) != 7    assert calculator.multiply(0,3) == 0    with pytest.raises(TypeError):       calculator.multiply(3, "ten") 
+def multiply(x, y):    """Multiply two numbers"""    result = x * y    return result
+--- Page 69 ---
+CALCULATOR TESTimport calculatorimport pytestdef test_multiply():    assert calculator.multiply(10,3) == 30    assert calculator.multiply(10,3) != 7    assert calculator.multiply(0,3) == 0    assert calculator.multiply(3, "ten") == "tententen"
+def multiply(x, y):    """Multiply two numbers"""    result = x * y    return result
+UNEXPECTED RESULT; MAKES YOU THINK
+--- Page 70 ---
+UNITTESTFOR  REFERENCE
+--- Page 71 ---
+UNIT TESTING•There is a `unittest` module that provides testing features •Follow the the boilerplate and update for your needsimport unittest import YOUR_MODULE class TestSOMETHING(unittest.TestCase):  """ Boilerplate for unit testing """    def test_SOMETHING(self):      self.assertEqual(mod.func(),True) if __name__ == '__main__':     unittest.main() 
+--- Page 72 ---
+UNIT TESTING# # simple.py # def is_true():     return True def is_even(number):     if number % 2 == 0:         return True def divide_by(x,y):     return x/y
+--- Page 73 ---
+UNIT TESTING# simple_test.py import unittest import simple class TestSimple(unittest.TestCase):     def test_is_true(self):         self.assertEqual(simple.always_returns_true(),True)     def test_is_even(self):         self.assertEqual(simple.is_even(2),True)         self.assertNotEqual(simple.is_even(3),True)     def test_divide_by(self):         """Test exception raise due to run time error"""         self.assertRaises(ZeroDivisionError, divide_by(5,3)) if __name__ == '__main__':     unittest.main() NAME MODULE_TEST.PY
+--- Page 74 ---
+UNIT TESTING# simple_test.py import unittest import simple class TestSimple(unittest.TestCase):     def test_is_true(self):         self.assertEqual(simple.always_returns_true(),True)     def test_is_even(self):         self.assertEqual(simple.is_even(2),True)         self.assertNotEqual(simple.is_even(3),True)     def test_divide_by(self):         """Test exception raise due to run time error"""         self.assertRaises(ZeroDivisionError, divide_by(5,3)) if __name__ == '__main__':     unittest.main() IMPORT UNITTEST AND MODULES YOU ARE TESTING
+--- Page 75 ---
+UNIT TESTING# simple_test.py import unittest import simple class TestSimple(unittest.TestCase):     def test_is_true(self):         self.assertEqual(simple.always_returns_true(),True)     def test_is_even(self):         self.assertEqual(simple.is_even(2),True)         self.assertNotEqual(simple.is_even(3),True)     def test_divide_by(self):         """Test exception raise due to run time error"""         self.assertRaises(ZeroDivisionError, divide_by(5,3)) if __name__ == '__main__':     unittest.main() BOILERPLATE CLASS DEFINITION USES TEST PREFIX
+--- Page 76 ---
+UNIT TESTING# simple_test.py import unittest import simple class TestSimple(unittest.TestCase):     def test_is_true(self):         self.assertEqual(simple.always_returns_true(),True)     def test_is_even(self):         self.assertEqual(simple.is_even(2),True)         self.assertNotEqual(simple.is_even(3),True)     def test_divide_by(self):         """Test exception raise due to run time error"""         self.assertRaises(ZeroDivisionError, divide_by(5,0)) if __name__ == '__main__':     unittest.main() TEST OUTCOMES AND COMPARED TO EXPECTED
+--- Page 77 ---
+UNIT TESTING# simple_test.py import unittest import simple class TestSimple(unittest.TestCase):     def test_is_true(self):         self.assertEqual(simple.always_returns_true(),True)     def test_is_even(self):         self.assertEqual(simple.is_even(2),True)         self.assertNotEqual(simple.is_even(3),True)     def test_divide_by(self):         """Test exception raise due to run time error"""         self.assertRaises(ZeroDivisionError, divide_by,5,3) if __name__ == '__main__':     unittest.main() LET PROGRAM BE CALLED STANDALONE
+--- Page 78 ---
+UNIT TESTING------------------------------------------------------------ Ran 3 tests in 0.000s OK 
+--- Page 79 ---
+UNIT TESTINGclass TestSimple(unittest.TestCase):     def test_is_true(self):         self.assertEqual(simple.is_true(),False) ============================================================ FAIL: test_is_true (__main__.TestSimple) ------------------------------------------------------------ Traceback (most recent call last):   File "simple_test.py", line 11, in test_is_true     self.assertEqual(simple.is_true(),False) AssertionError: True != False Ran 1 test in 0.000s FAILED (failures=1)
+--- Page 80 ---
+UNIT TESTING
+•Assertions
+--- Page 81 ---
+UNIT TESTING    def test_divide_by(self):         """Test exception raise due to run time error"""         self.assertRaises(ZeroDivisionError, divide_by,5,3)    self.assertEqual(divide_by(6,3),2) WE NEED TO PROGRAM FAILURES  AND EDGE CASES INTO OUR TESTS
+--- Page 82 ---
+MODULES•Writing code to test may require you to refactor in a less efficient mannerdef compute_tax_and_tip(amount):     return ((amount + \              (amount*.0875)) * 1.20) # Refactored for reusability and  # testing def compute_tax_and_tip(amount):     tax = compute_tax(amount)     tip = compute_tip(amount + tax,20)     return amount + tax + tip def compute_tax(amount):     pass def compute_tip(amount):     pass
+--- Page 83 ---
+UNIT TESTING•Unit test can be a useful tool but they can be abused •In practice, they are used for larger codebases and applications •You can be a successful, careful programmer without them, but they can help if used effectively
+--- Page 84 ---
+© T.A. BINKOWSKI, 2020CONTINUOUS INTEGRATION WITH GITHUB
+MODULE 5 MPCS 50101
+--- Page 85 ---
+CI WITH GITHUB•Continuous Integration (CI) is a development practice  -Developers integrate code into a shared repository frequently -Each integration can then be verified by an automated build and automated tests
+--- Page 86 ---
+CI WITH GITHUB•GitHub Actions provides support for CI -Supports testing and deployment -Hooks to "do stuff" at different stages
+--- Page 87 ---
+© T.A. BINKOWSKI, 2020THE END
+MODULE 5 MPCS 50101
